@@ -46,4 +46,9 @@ public class Rating {
 		this.movieRating = movieRating;
 	}
 
+	public String toString()
+	{
+		return  Long.toString(userID) + ' ' + Long.toString(movieID)  + ' ' + Long.toString(movieRating) + ' ' + Long.toString(userTimestamp);
+	}
+
 }

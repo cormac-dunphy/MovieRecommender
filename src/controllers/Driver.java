@@ -10,69 +10,68 @@ import utils.Importer;
 public class Driver implements RecommenderAPI {
 
 	@Override
-	public User addUser(String firstName, String lastName, long age,
-			String gender, String occupation) {
-		// TODO Auto-generated method stub
-		return null;
+	public User addUser(String firstName, String lastName, long age,String gender, String occupation, long zipCode) {
+		long id = Importer.userMap.size()+1;
+		User user = new User(id, firstName, lastName, gender, age, occupation, zipCode);
+		Importer.userMap.put(id, user);
+		return user;
 	}
 
 	@Override
 	public User removeUser(long userID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		return Importer.userMap.remove(userID); 
+		}
 
 	@Override
 	public Movie addMovie(String title, String year, String url) {
-		// TODO Auto-generated method stub
-		return null;
+		Movie movie = new Movie(title, year,url);
+		Importer.movieMap.put(movie.id, movie);
+		return movie;
 	}
 
 	@Override
-	public Rating addRating(long userID, long movieID, long rating) {
-		// TODO Auto-generated method stub
-		return null;
+	public Rating addRating(long userID, long movieID, long movieRating, long userTimestamp) {
+		Rating rating = new Rating(userID, movieID, movieRating, userTimestamp);
+		Importer.ratingMap.put(rating.getUserID(), rating);
+		return rating;
 	}
 
 	@Override
 	public Movie getMovie(long movieID) {
-		// TODO Auto-generated method stub
-		return null;
+		Movie m = Importer.movieMap.get(movieID);
+		return m;
 	}
 
 	@Override
 	public User getUserRatings(long userID) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Movie getMoviesByTitle() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Movie getMoviesByYear() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Importer initialLoad(File csvFile) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public void load() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void write() {
-		// TODO Auto-generated method stub
+		
 
 	}
 

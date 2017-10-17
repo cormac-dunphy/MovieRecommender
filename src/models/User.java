@@ -1,6 +1,8 @@
 package models;
 
+
 public class User {
+	public long id;
 	public String firstName;
 	public String lastName;
 	public String gender;
@@ -8,7 +10,7 @@ public class User {
 	public String occupation;
 	public long zipCode;
 
-	public User(String firstName, String lastName, String gender, long age, String occupation, long zipCode)
+	public User(Long id, String firstName, String lastName, String gender, long age, String occupation, long zipCode)
 	{
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -16,6 +18,15 @@ public class User {
 		this.age = age;
 		this.occupation = occupation;
 		this.zipCode = zipCode;
+		this.id = id;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {
@@ -64,6 +75,11 @@ public class User {
 
 	public void setZipCode(long zipCode) {
 		this.zipCode = zipCode;
+	}
+	
+	public String toString()
+	{
+		return  firstName + ' ' + lastName  + ' ' + gender + ' ' + age + ' ' + occupation + ' ' + zipCode;
 	}
 
 }

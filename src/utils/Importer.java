@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import controllers.Driver;
 import models.Movie;
 import models.Rating;
 import models.User;
@@ -14,6 +15,8 @@ public class Importer {
 	public static HashMap<Long, User> userMap = new HashMap<Long, User>();
 	public static HashMap<Long, Movie> movieMap = new HashMap<Long, Movie>();
 	public static HashMap<Long, Rating> ratingMap = new HashMap<Long, Rating>();
+	public static Long id;
+	public static Driver driver = new Driver();
 	
 	public static void ImportUsers() throws IOException
 	{
@@ -27,7 +30,7 @@ public class Importer {
 			String[] userTokens = userDetails.split(delims);
 
 			//assign each token a name
-			long userID = Long.parseLong(userTokens[0]);
+			id = Long.parseLong(userTokens[0]);
 			String firstName = userTokens[1];
 			String lastName = userTokens[2];				
 			long age = Long.parseLong(userTokens[3]);
@@ -36,19 +39,16 @@ public class Importer {
 			long zipCode = Long.parseLong(userTokens[6]);
 
 			if (userTokens.length == 7) {
-				System.out.println("UserID: " + userTokens[0] + ",First Name:" + userTokens[1]);
-				User u = new User(firstName, lastName, gender, age, occupation, zipCode);
-				userMap.put(new Long(userID), u);
+				User u = new User(id, firstName, lastName, gender, age, occupation, zipCode);
+				userMap.put(new Long(id), u);
 			} else {
 				scanner.close();
 				throw new IOException("Invalid member length: " + userTokens.length);
 			}
 		}
-		System.out.println("User hashmap: " + userMap);
+		//System.out.println("User hashmap: " + userMap);
 		scanner.close();
-
 	}
-
 
 	public static void ImportMovies() throws FileNotFoundException
 	{
@@ -105,5 +105,3 @@ public class Importer {
 		System.out.println("rating hashmap: " + ratingMap);
 	}
 }
-
-
