@@ -73,7 +73,6 @@ public class Importer {
 				scanner.close();
 			}
 		}
-		System.out.println("Movies hashmap: " + movieMap);
 	}
 
 
@@ -102,6 +101,5 @@ public class Importer {
 				scanner.close();
 			}
 		}
-		System.out.println("rating hashmap: " + ratingMap);
 	}
 }

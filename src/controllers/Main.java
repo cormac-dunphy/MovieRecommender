@@ -14,5 +14,7 @@ public class Main {
 		driver.addUser("Bob", "Dylan", 70, "M", "Artist", 10101010);
 		driver.addUser("Leo", "Messi", 30, "M", "Footballer", 20202020);
 		System.out.println("User hashmap: " + Importer.userMap);
+		System.out.println("Movies hashmap: " + Importer.movieMap);
+		System.out.println("rating hashmap: " + Importer.ratingMap);
 }
 }
