@@ -1,8 +1,7 @@
 package models;
 
 public class Movie {
-	public Long counter = 0l;
-	public Long id;
+	public long id;
 	public String title;
 	public String year;
 	public String url;

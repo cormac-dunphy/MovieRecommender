@@ -7,9 +7,8 @@ import org.junit.Test;
 public class UserTest {
 
 	@Test
-	public void testCreate() 
+	public void testAddUser() 
 	{
-		User one = new User(10l, "Cormac", "Dunphy", "M", 0, "student", 10101010);
-		equals(one);
+	    fail("Not yet implemented");
 	}
 }

@@ -24,8 +24,9 @@ public class Driver implements RecommenderAPI {
 
 	@Override
 	public Movie addMovie(String title, String year, String url) {
+		long id = Importer.movieMap.size()+1;
 		Movie movie = new Movie(title, year,url);
-		Importer.movieMap.put(movie.id, movie);
+		Importer.movieMap.put(id, movie);
 		return movie;
 	}
 
