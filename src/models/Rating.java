@@ -5,7 +5,7 @@ public class Rating {
 	public long movieID;
 	public long movieRating;
 	public long userTimestamp;
-	
+
 	public Rating(long userID, long movieID, long movieRating, long userTimestamp)
 	{
 		this.setUserID(userID);

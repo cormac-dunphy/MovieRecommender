@@ -8,7 +8,7 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 public class Serializer {
-	public void Serialize() throws IOException
+	public void SerializeUsers() throws IOException
 	{
 		XStream xstream = new XStream(new DomDriver());
 		ObjectOutputStream out = xstream.createObjectOutputStream(new FileWriter("users.xml"));

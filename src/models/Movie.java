@@ -45,7 +45,7 @@ public class Movie {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	
+
 	public String toString()
 	{
 		return  title + ' ' + year  + ' ' + url;

@@ -17,7 +17,7 @@ public class Importer {
 	public static HashMap<Long, Rating> ratingMap = new HashMap<Long, Rating>();
 	public static Long id;
 	public static Driver driver = new Driver();
-	
+
 	public static void ImportUsers() throws IOException
 	{
 		File usersFile = new File("data/users.dat");
@@ -26,7 +26,6 @@ public class Importer {
 
 		while (scanner.hasNextLine()) {
 			String userDetails = scanner.nextLine();
-			// parse user details string
 			String[] userTokens = userDetails.split(delims);
 
 			//assign each token a name
@@ -46,7 +45,6 @@ public class Importer {
 				throw new IOException("Invalid member length: " + userTokens.length);
 			}
 		}
-		//System.out.println("User hashmap: " + userMap);
 		scanner.close();
 	}
 
@@ -96,7 +94,6 @@ public class Importer {
 			if (ratingTokens.length == 4) {
 				Rating r = new Rating(userID, movieID, movieRating, userTimestamp);
 				ratingMap.put(new Long(userID), r);
-				//movieMap.get(r.getMovieID()).addRating(r);
 			} else {
 				scanner.close();
 			}

@@ -68,7 +68,7 @@ public class User {
 	public void setOccupation(String occupation) {
 		this.occupation = occupation;
 	}
-	
+
 	public long getZipCode() {
 		return zipCode;
 	}
@@ -76,7 +76,7 @@ public class User {
 	public void setZipCode(long zipCode) {
 		this.zipCode = zipCode;
 	}
-	
+
 	public String toString()
 	{
 		return  firstName + ' ' + lastName  + ' ' + gender + ' ' + age + ' ' + occupation + ' ' + zipCode;
