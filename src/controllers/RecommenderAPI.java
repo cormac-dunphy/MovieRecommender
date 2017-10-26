@@ -18,7 +18,8 @@ public interface RecommenderAPI {
 	public Movie getMoviesByYear();
 	public Importer initialLoad(File csvFile);
 	void write();
-	//void load(File file) throws Exception;
-	//void store (File file) throws Exception;
+	//void load() throws Exception;
+	void storeUsers (File file) throws Exception;
+	void storeMovies (File file) throws Exception;
 }
 

@@ -12,6 +12,7 @@ import models.Rating;
 import models.User;
 
 public class Importer {
+	
 	public static HashMap<Long, User> userMap = new HashMap<Long, User>();
 	public static HashMap<Long, Movie> movieMap = new HashMap<Long, Movie>();
 	public static HashMap<Long, Rating> ratingMap = new HashMap<Long, Rating>();
@@ -73,7 +74,6 @@ public class Importer {
 		}
 	}
 
-
 	public static void ImportRatings() throws FileNotFoundException
 	{
 		File ratingsFile = new File("data/ratings.dat");
@@ -90,7 +90,7 @@ public class Importer {
 			long movieRating = Long.parseLong(ratingTokens[2]);
 			long userTimestamp = Long.parseLong(ratingTokens[3]);
 
-			// output rating data to console.
+			// put data into ratingMap hashmap
 			if (ratingTokens.length == 4) {
 				Rating r = new Rating(userID, movieID, movieRating, userTimestamp);
 				ratingMap.put(new Long(userID), r);
