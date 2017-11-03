@@ -20,43 +20,38 @@ import utils.Importer;
 import utils.Serializer;
 
 public class Driver implements RecommenderAPI {
-	/*
+	
 	private Serializer serializer;
-
-
+	
 	public Driver()
-	{}
-
+	{
+	}
+	
 	public Driver(Serializer serializer)
 	{
 		this.serializer = serializer;
 	}
-
+	
 	@SuppressWarnings("unchecked")
-	public void load() throws Exception 
+	public void load(File file) throws Exception
 	{
-
-	}
-
-	@SuppressWarnings("unchecked")
-	void load(File file) throws Exception
-	{
-		ObjectInputStream is = null;
-		try
-		{
-			XStream xstream = new XStream(new DomDriver());
-			is = xstream.createObjectInputStream(new FileReader(file));
-			Importer.userMap       = (HashMap<Long, User>)     is.readObject();
-		}
-		finally
-		{
-			if (is != null)
-			{
-				is.close();
-			}
-		}
-	}
-	 */
+	    ObjectInputStream is = null;
+	    try
+	    {
+	      XStream xstream = new XStream(new DomDriver());
+	      is = xstream.createObjectInputStream(new FileReader(file));
+	      Importer.userMap       = (HashMap<Long, User>)     is.readObject();
+	    }
+	    finally
+	    {
+	      if (is != null)
+	      {
+	        is.close();
+	      }
+	    }
+}
+	
+	//writes the content of the userMap to a file called Users.xml
 	public void storeUsers(File file) throws Exception
 	{
 		XStream xstream = new XStream(new DomDriver());
@@ -64,7 +59,8 @@ public class Driver implements RecommenderAPI {
 		out.writeObject(Importer.userMap);
 		out.close(); 
 	}
-
+	
+	//writes the content of the movieMap to a file called Movies.xml
 	public void storeMovies(File file) throws IOException 
 	{	
 		XStream xstream = new XStream(new DomDriver());
@@ -72,7 +68,8 @@ public class Driver implements RecommenderAPI {
 		out.writeObject(Importer.movieMap);
 		out.close(); 	
 	}
-
+	
+	//writes the content of the ratingMap to a file called Ratings.xml
 	public void storeRatings(File file) throws IOException 
 	{	
 		XStream xstream = new XStream(new DomDriver());
@@ -80,22 +77,26 @@ public class Driver implements RecommenderAPI {
 		out.writeObject(Importer.ratingMap);
 		out.close(); 	
 	}
-
+	
+	//returns the contents of user map
 	public HashMap<Long, User> getUsers()
 	{
-		return Importer.userMap;		
+		return Importer.userMap;
 	}
 
+	//returns the contents of movie map
 	public HashMap<Long, Movie> getMovies()
 	{
 		return Importer.movieMap;
 	}
 
+	//returns the contents of rating map
 	public HashMap<Long, Rating> getRatings() 
 	{
 		return Importer.ratingMap;
 	}
 
+	//adds new user to usermap and gives it an id of 1 greater than the size of the hashmap
 	@Override
 	public User addUser(String firstName, String lastName, long age,String gender, String occupation, long zipCode)
 	{
@@ -105,6 +106,7 @@ public class Driver implements RecommenderAPI {
 		return user;
 	}
 
+	//adds new movie to moviemap and gives it an id of 1 greater than the size of the hashmap
 	public Movie addMovie(String title, String year, String url) 
 	{
 		long id = Importer.movieMap.size()+1;
@@ -113,6 +115,7 @@ public class Driver implements RecommenderAPI {
 		return movie;
 	}
 
+	//adds a rating to the ratingmap
 	public Rating addRating(long userID, long movieID, long movieRating, long userTimestamp) 
 	{
 		Rating rating = new Rating(userID, movieID, movieRating, userTimestamp);
@@ -120,12 +123,14 @@ public class Driver implements RecommenderAPI {
 		return rating;
 	}
 
+	//removes a user from usermap by id
 	@Override
 	public User removeUser(long userID) 
 	{
 		return Importer.userMap.remove(userID); 
 	}
 
+	//returns movie by id
 	public Movie getMovie(long movieID) 
 	{
 		Movie m = Importer.movieMap.get(movieID);

@@ -7,6 +7,9 @@ import java.util.Collection;
 import java.util.HashMap;
 
 import models.User;
+import asg.cliche.Param;
+import asg.cliche.Shell;
+import asg.cliche.ShellFactory;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
@@ -20,12 +23,15 @@ import utils.XMLSerializer;
 public class Main {
 
 	static FileSerializer serializer = new FileSerializer();
-
-	public static void main(String args[]) throws Exception{
-
+	public static Driver driver = new Driver();
+	public static Menu menu = new Menu();
+	//runs the program
+	public static void main(String args[]) throws Exception
+	{
 		serializer.SerializeUsers();
 		serializer.SerializeMovies();
 		serializer.SerializeRatings();
-
+		
+		menu.menu();
 	}
 }

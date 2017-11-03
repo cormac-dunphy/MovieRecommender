@@ -19,6 +19,7 @@ public class Importer {
 	public static Long id;
 	public static Driver driver = new Driver();
 
+	//reads in users file and splits them into tokens
 	public static void ImportUsers() throws IOException
 	{
 		File usersFile = new File("data/users.dat");
@@ -49,6 +50,7 @@ public class Importer {
 		scanner.close();
 	}
 
+	//reads in movies file and splits them into tokens
 	public static void ImportMovies() throws FileNotFoundException
 	{
 		File moviesFile = new File("data/movies.dat");
@@ -74,6 +76,7 @@ public class Importer {
 		}
 	}
 
+	//reads in ratings file and splits them into tokens
 	public static void ImportRatings() throws FileNotFoundException
 	{
 		File ratingsFile = new File("data/ratings.dat");
