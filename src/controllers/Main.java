@@ -21,7 +21,9 @@ public class Main {
 
 	static FileSerializer serializer = new FileSerializer();
 
-	public static void main(String args[]) throws Exception{
+	//runs the program
+	public static void main(String args[]) throws Exception
+	{
 
 		serializer.SerializeUsers();
 		serializer.SerializeMovies();

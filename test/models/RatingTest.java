@@ -6,6 +6,8 @@ import org.junit.Test;
 
 public class RatingTest {
 	
+	//tests getters and setters for the rating class
+	
 	Rating test = new Rating(1234, 1234, 5, 1234);
 	
 	@Test

@@ -6,6 +6,8 @@ import org.junit.Test;
 
 public class MovieTest {
 
+	//tests getters and setters for the movie class
+	
 	Movie test = new Movie("It", "2017", "www.it.com");
 	
 	@Test

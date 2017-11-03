@@ -12,6 +12,7 @@ public class DriverTest {
 	
 	Driver driver = new Driver();
 	
+	//checks size of hashmap before and after the addUser method is called
 	@Test
 	public void testAddUser()
 	{
@@ -20,12 +21,15 @@ public class DriverTest {
 		assertTrue(Importer.userMap.size() == 1);
 	}
 	
+	//removes the user from the hashmap
 	@After
 	public void tearDown()
 	{
 		driver.removeUser(1);
 	}
 	
+	//adds a user then checks the size is 1
+	//then calls the removeUser method and checks if the size is 0
 	@Test
 	public void testRemoveUser()
 	{
@@ -35,6 +39,7 @@ public class DriverTest {
 		assertTrue(Importer.userMap.size() == 0);
 	}
 		
+	//checks the size of the hashmap before and after the addMovie method is called
 	@Test
 	public void testAddMovie()
 	{
@@ -43,6 +48,7 @@ public class DriverTest {
 		assertTrue(Importer.movieMap.size() == 1);
 	}
 	
+	//checks the size of the hashmap before and after the addRating method is called
 	@Test
 	public void testAddRating()
 	{
