@@ -17,6 +17,7 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 import utils.FileSerializer;
 import utils.Importer;
 import utils.Serializer;
+import utils.Sorter;
 //import utils.Serializer;
 import utils.XMLSerializer;
 
@@ -25,13 +26,20 @@ public class Main {
 	static FileSerializer serializer = new FileSerializer();
 	public static Driver driver = new Driver();
 	public static Menu menu = new Menu();
+	public static Sorter sorter = new Sorter();
+
 	//runs the program
 	public static void main(String args[]) throws Exception
 	{
-		serializer.SerializeUsers();
-		serializer.SerializeMovies();
-		serializer.SerializeRatings();
+		Importer.ImportUsers();
+		sorter.sortUsers();
+		Importer.ImportMovies();
+		sorter.sortMovies();
+		Importer.ImportRatings();
 		
 		menu.menu();
+		driver.storeUsers(new File("Users.xml"));
+		driver.storeMovies(new File("Movies.xml"));
+		driver.storeRatings(new File("Ratings.xml"));
 	}
 }

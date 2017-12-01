@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,6 +10,7 @@ import java.io.ObjectOutputStream;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
@@ -16,10 +18,16 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 import models.Movie;
 import models.Rating;
 import models.User;
+import utils.FileSerializer;
 import utils.Importer;
 import utils.Serializer;
+import utils.Sorter;
 
 public class Driver implements RecommenderAPI {
+	
+	public HashMap<Long,User> userIndex = new HashMap<>();
+	public HashMap<Long,Movie> movieIndex = new HashMap<>();
+	public HashMap<Long,Rating> ratingIndex = new HashMap<>();
 	
 	private Serializer serializer;
 	
@@ -31,25 +39,6 @@ public class Driver implements RecommenderAPI {
 	{
 		this.serializer = serializer;
 	}
-	
-	@SuppressWarnings("unchecked")
-	public void load(File file) throws Exception
-	{
-	    ObjectInputStream is = null;
-	    try
-	    {
-	      XStream xstream = new XStream(new DomDriver());
-	      is = xstream.createObjectInputStream(new FileReader(file));
-	      Importer.userMap       = (HashMap<Long, User>)     is.readObject();
-	    }
-	    finally
-	    {
-	      if (is != null)
-	      {
-	        is.close();
-	      }
-	    }
-}
 	
 	//writes the content of the userMap to a file called Users.xml
 	public void storeUsers(File file) throws Exception
@@ -136,6 +125,23 @@ public class Driver implements RecommenderAPI {
 		Movie m = Importer.movieMap.get(movieID);
 		return m;
 	}
+	
+	public void searchMovies()
+	{
+		String s = null;
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.println("Enter search term: ");
+		s = scanner.nextLine();
+		
+		for(Movie value : Sorter.sortedMovieMap.values())
+		{
+			if(value.title.contains(s))
+			{
+				System.out.println(value);
+			}
+		}
+	}
 
 	@Override
 	public User getUserRatings(long userID) 
@@ -163,5 +169,32 @@ public class Driver implements RecommenderAPI {
 
 	@Override
 	public void write() 
-	{}
+	{
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void load(File file) throws Exception
+	{
+	    ObjectInputStream is = null;
+	    try
+	    {
+	      XStream xstream = new XStream(new DomDriver());
+	      is = xstream.createObjectInputStream(new FileReader(file));
+	      Importer.userMap       = (HashMap<Long, User>)     is.readObject();
+	    }
+	    finally
+	    {
+	      if (is != null)
+	      {
+	        is.close();
+	      }
+	    }
+}
+	
+	public void storeInput() throws Exception
+	{
+		FileSerializer.serializeFiles(Importer.movieMap, Importer.userMap, Importer.ratingMap);
+	}
+
 }

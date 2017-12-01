@@ -63,31 +63,16 @@ public class Menu {
 
 	}
 	
-	@Command(description = "Store Users")
-	public void storeUsers(File file) throws Exception 
+	@Command(description = "Search Movies")
+	public void searchMovies() 
 	{
-		driver.storeUsers(file);
-
+		driver.searchMovies();
 	}
 	
-	@Command(description = "Store Movies")
-	public void storeMovies(File file) throws Exception 
+	public void menu() throws Exception 
 	{
-		driver.storeMovies(file);
-
-	}
-	
-	@Command(description = "Load Users File")
-	public void loadMovies(File file) throws Exception 
-	{
-		driver.load(file);
-
-	}
-	
-	public void menu() throws Exception {
-
 		Menu menu = new Menu();
-		Shell shell = ShellFactory.createConsoleShell("lm", "Welcome to likemovie - ?help for instructions", menu);
+		Shell shell = ShellFactory.createConsoleShell("MR", "Welcome to Movie Recommender - ?help for instructions", menu);
 		shell.commandLoop();
 	}
 
