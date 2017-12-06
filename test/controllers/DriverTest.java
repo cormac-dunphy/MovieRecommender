@@ -17,7 +17,7 @@ public class DriverTest {
 	public void testAddUser()
 	{
 		assertTrue(Importer.userMap.size() == 0);
-		driver.addUser("Cormac", "Dunphy", 20, "Male", "Student", 101010);
+		driver.addUser("Cormac", "Dunphy", 20l, "Male", "Student", 101010);
 		assertTrue(Importer.userMap.size() == 1);
 	}
 	
@@ -33,7 +33,7 @@ public class DriverTest {
 	@Test
 	public void testRemoveUser()
 	{
-		driver.addUser("Cormac", "Dunphy", 20, "Male", "Student", 101010);
+		driver.addUser("Cormac", "Dunphy", 20l, "Male", "Student", 101010);
 		assertTrue(Importer.userMap.size() == 1);
 		driver.removeUser(1);
 		assertTrue(Importer.userMap.size() == 0);
@@ -53,7 +53,8 @@ public class DriverTest {
 	public void testAddRating()
 	{
 		assertTrue(Importer.ratingMap.size() == 0);
-		driver.addRating(1234l, 1234l, 5l, 1234l);
+		driver.addRating(1234l, 1234l, 5l);
 		assertTrue(Importer.ratingMap.size() == 1);
 	}
+	
 }

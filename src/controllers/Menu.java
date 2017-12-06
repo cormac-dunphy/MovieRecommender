@@ -1,7 +1,9 @@
 package controllers;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
+import utils.Importer;
 import asg.cliche.Command;
 import asg.cliche.Param;
 import asg.cliche.Shell;
@@ -13,7 +15,7 @@ public class Menu {
 
 	@Command(description = "Add A New User")
 	public void addUser(@Param(name = "first name") String firstName, @Param(name = "last name") String lastName,
-			@Param(name = "gender") String gender, @Param(name = "age") Long age,
+			@Param(name = "age") Long age, @Param(name = "gender") String gender,
 			@Param(name = "occupation") String occupation, @Param(name = "zipCode") long zipCode) 
 	{
 		driver.addUser(firstName, lastName, age, gender, occupation, zipCode);
@@ -30,9 +32,9 @@ public class Menu {
 	
 	@Command(description = "Add A New Rating")
 	public void addRating(@Param(name = "userID") long userID, @Param(name = "movieID") Long movieID,
-			@Param(name = "movieRating") Long movieRating, @Param(name = "userTimestamp") Long userTimestamp) 
+			@Param(name = "movieRating") Long movieRating) 
 	{
-		driver.addRating(userID, movieID, movieRating, userTimestamp);
+		driver.addRating(userID, movieID, movieRating);
 
 	}
 	
@@ -46,7 +48,7 @@ public class Menu {
 	@Command(description = "Get A Movie")
 	public void getMovie(@Param(name = "movieID") long movieID) 
 	{
-		driver.removeUser(movieID);
+		driver.getMovie(movieID);
 
 	}
 	
@@ -60,13 +62,24 @@ public class Menu {
 	public void getRatings() 
 	{
 		driver.getRatings();
-
 	}
 	
-	@Command(description = "Search Movies")
-	public void searchMovies() 
+	@Command(description = "Get Movies By Title")
+	public void getMoviesByTitle() 
 	{
-		driver.searchMovies();
+		driver.getMoviesByTitle();
+	}
+	
+	@Command(description = "Get Movies By Year")
+	public void getMoviesByYear() 
+	{
+		driver.getMoviesByYear();
+	}
+	
+	@Command(description = "List Movies")
+	public void listMovies() throws FileNotFoundException 
+	{
+		driver.listMovies();
 	}
 	
 	public void menu() throws Exception 

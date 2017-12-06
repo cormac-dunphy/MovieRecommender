@@ -15,7 +15,7 @@ public class UserTest
 {
 	//tests getters and setters for the user class
 	
-	User test = new User(40l, "Cormac", "Dunphy", "Male", 20l, "Student" , 20201212l);
+	User test = new User(40l, "Cormac", "Dunphy", 20l, "Male", "Student" , 20201212l);
 	
 	@Test
 	public void testCreateUser()

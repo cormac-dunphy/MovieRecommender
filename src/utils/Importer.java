@@ -27,27 +27,28 @@ public class Importer {
 		Scanner scanner = new Scanner(usersFile);
 
 		while (scanner.hasNextLine()) {
-			String userDetails = scanner.nextLine();
+			String userDetails = scanner.nextLine().trim();
 			String[] userTokens = userDetails.split(delims);
 
 			//assign each token a name
 			id = Long.parseLong(userTokens[0]);
 			String firstName = userTokens[1];
-			String lastName = userTokens[2];				
+			String lastName = userTokens[2];
 			long age = Long.parseLong(userTokens[3]);
 			String gender = userTokens[4];
 			String occupation = userTokens[5];
 			long zipCode = Long.parseLong(userTokens[6]);
 
-			if (userTokens.length == 7) {
-				User u = new User(id, firstName, lastName, gender, age, occupation, zipCode);
+		//	if (userTokens.length == 7) {
+				User u = new User(id, firstName, lastName, age, gender, occupation, zipCode);
 				userMap.put(new Long(id), u);
-			} else {
-				scanner.close();
-				throw new IOException("Invalid member length: " + userTokens.length);
-			}
+		//	} else {
 		}
-		scanner.close();
+				scanner.close();
+	//			throw new IOException("Invalid member length: " + userTokens.length);
+			//}
+		//}
+		//scanner.close();
 	}
 
 	//reads in movies file and splits them into tokens
@@ -58,7 +59,7 @@ public class Importer {
 		Scanner scanner = new Scanner(moviesFile);
 
 		while (scanner.hasNextLine())   {    
-			String movieDetails = scanner.nextLine();    
+			String movieDetails = scanner.nextLine().trim();    
 			String[] movieTokens = movieDetails.split(delims);
 
 			long movieID = Long.parseLong(movieTokens[0]);
@@ -66,14 +67,14 @@ public class Importer {
 			String year = movieTokens[2];
 			String url = movieTokens[3];
 
-
-			if (movieTokens.length == 23) {
+	//		if (movieTokens.length == 23) {
 				Movie m = new Movie(title, year, url);
 				movieMap.put(new Long(movieID), m);
-			} else {
-				scanner.close();
-			}
+	//		} else {
 		}
+				scanner.close();
+			//}
+	//	}
 	}
 
 	//reads in ratings file and splits them into tokens
@@ -94,12 +95,13 @@ public class Importer {
 			long userTimestamp = Long.parseLong(ratingTokens[3]);
 
 			// put data into ratingMap hashmap
-			if (ratingTokens.length == 4) {
+		//	if (ratingTokens.length == 4) {
 				Rating r = new Rating(userID, movieID, movieRating, userTimestamp);
 				ratingMap.put(new Long(userID), r);
-			} else {
-				scanner.close();
-			}
+		//	} else {
 		}
+				scanner.close();
+		//	}
+		//}
 	}
 }

@@ -10,7 +10,7 @@ public class User {
 	public String occupation;
 	public long zipCode;
 
-	public User(Long id, String firstName, String lastName, String gender, long age, String occupation, long zipCode)
+	public User(Long id, String firstName, String lastName, long age, String gender, String occupation, long zipCode)
 	{
 		this.firstName = firstName;
 		this.lastName = lastName;
