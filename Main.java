@@ -31,7 +31,6 @@ public class Main {
 	//runs the program
 	public static void main(String args[]) throws Exception
 	{
-
 		Importer.ImportUsers();
 		sorter.sortUsers();
 		Importer.ImportMovies();
@@ -39,7 +38,6 @@ public class Main {
 		Importer.ImportRatings();
 		
 		menu.menu();
-
-
+		
 	}
 }

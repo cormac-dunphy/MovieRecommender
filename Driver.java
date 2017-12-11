@@ -27,73 +27,16 @@ import utils.Sorter;
 
 public class Driver implements RecommenderAPI {
 
-
-
-	
-
 	private Serializer serializer;
-
-	
 
 	public Driver()
 	{
 	}
 
-
-
-
 	public Driver(Serializer serializer)
 	{
 		this.serializer = serializer;
 	}
-
-	
-	@SuppressWarnings("unchecked")
-	public void load(File file) throws Exception
-	{
-	    ObjectInputStream is = null;
-	    try
-	    {
-	      XStream xstream = new XStream(new DomDriver());
-	      is = xstream.createObjectInputStream(new FileReader(file));
-	      Importer.userMap       = (HashMap<Long, User>)     is.readObject();
-	    }
-	    finally
-	    {
-	      if (is != null)
-	      {
-	        is.close();
-	      }
-	    }
-}
-	
-	//writes the content of the userMap to a file called Users.xml
-	public void storeUsers(File file) throws Exception
-	{
-		XStream xstream = new XStream(new DomDriver());
-		ObjectOutputStream out = xstream.createObjectOutputStream(new FileWriter(file));
-		out.writeObject(Importer.userMap);
-		out.close(); 
-	}
-	
-	//writes the content of the movieMap to a file called Movies.xml
-	public void storeMovies(File file) throws IOException 
-	{	
-		XStream xstream = new XStream(new DomDriver());
-		ObjectOutputStream out = xstream.createObjectOutputStream(new FileWriter(file));
-		out.writeObject(Importer.movieMap);
-		out.close(); 	
-	}
-	
-	//writes the content of the ratingMap to a file called Ratings.xml
-	public void storeRatings(File file) throws IOException 
-	{	
-		XStream xstream = new XStream(new DomDriver());
-		ObjectOutputStream out = xstream.createObjectOutputStream(new FileWriter(file));
-		out.writeObject(Importer.ratingMap);
-		out.close(); 	
-	}
-	
 
 	//returns the contents of user map
 	public HashMap<Long, User> getUsers()
@@ -187,11 +130,7 @@ public class Driver implements RecommenderAPI {
 	}
 
 	//adds a rating to the ratingmap
-
 	public Rating addRating(long userID, long movieID, long movieRating) 
-
-
-
 	{
 		// Initialize variable and store new Timestamp object
 		java.util.Date date= new java.util.Date();

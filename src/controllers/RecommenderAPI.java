@@ -17,6 +17,7 @@ public interface RecommenderAPI {
 	public User getUserRatings(long userID);
 	public Movie getMoviesByTitle();
 	public Movie getMoviesByYear();
+
 	//public Importer initialLoad(File csvFile);
 	//void write();
 	//void searchMovies();
@@ -24,3 +25,6 @@ public interface RecommenderAPI {
 	//void storeUsers (File file) throws Exception;
 	//void storeMovies (File file) throws Exception;
 }
+
+
+
