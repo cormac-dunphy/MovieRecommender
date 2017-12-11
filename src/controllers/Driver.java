@@ -20,80 +20,10 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 import models.Movie;
 import models.Rating;
 import models.User;
-import utils.FileSerializer;
 import utils.Importer;
-import utils.Serializer;
 import utils.Sorter;
 
 public class Driver implements RecommenderAPI {
-
-
-
-	
-
-	private Serializer serializer;
-
-	
-
-	public Driver()
-	{
-	}
-
-
-
-
-	public Driver(Serializer serializer)
-	{
-		this.serializer = serializer;
-	}
-
-	
-	@SuppressWarnings("unchecked")
-	public void load(File file) throws Exception
-	{
-	    ObjectInputStream is = null;
-	    try
-	    {
-	      XStream xstream = new XStream(new DomDriver());
-	      is = xstream.createObjectInputStream(new FileReader(file));
-	      Importer.userMap       = (HashMap<Long, User>)     is.readObject();
-	    }
-	    finally
-	    {
-	      if (is != null)
-	      {
-	        is.close();
-	      }
-	    }
-}
-	
-	//writes the content of the userMap to a file called Users.xml
-	public void storeUsers(File file) throws Exception
-	{
-		XStream xstream = new XStream(new DomDriver());
-		ObjectOutputStream out = xstream.createObjectOutputStream(new FileWriter(file));
-		out.writeObject(Importer.userMap);
-		out.close(); 
-	}
-	
-	//writes the content of the movieMap to a file called Movies.xml
-	public void storeMovies(File file) throws IOException 
-	{	
-		XStream xstream = new XStream(new DomDriver());
-		ObjectOutputStream out = xstream.createObjectOutputStream(new FileWriter(file));
-		out.writeObject(Importer.movieMap);
-		out.close(); 	
-	}
-	
-	//writes the content of the ratingMap to a file called Ratings.xml
-	public void storeRatings(File file) throws IOException 
-	{	
-		XStream xstream = new XStream(new DomDriver());
-		ObjectOutputStream out = xstream.createObjectOutputStream(new FileWriter(file));
-		out.writeObject(Importer.ratingMap);
-		out.close(); 	
-	}
-	
 
 	//returns the contents of user map
 	public HashMap<Long, User> getUsers()
@@ -116,7 +46,7 @@ public class Driver implements RecommenderAPI {
 		return Importer.ratingMap;
 	}
 
-	//adds new user to usermap and gives it an id of 1 greater than the size of the hashmap
+	//adds new user to usermap and gives it an id of 1 greater than the size of the hashmap and serializes the hashmap to the file
 	@Override
 	public User addUser(String firstName, String lastName, long age, String gender, String occupation, long zipCode)
 	{
@@ -130,8 +60,8 @@ public class Driver implements RecommenderAPI {
 		String delims2 = "|";
 		String newLine = System.getProperty("line.separator");
 
-		// Use new PrintWriter with the 'true' parameter to avoid overwriting the books file.
-		// Add the new book title, date released and author along with the book ID and delimiters.
+		// Use new PrintWriter with the 'true' parameter to avoid overwriting the user file.
+		// Add the new user info along with the id and delimiter
 		PrintWriter printWriter = null;
 		try {
 			if (!userFile.exists()) userFile.createNewFile();
@@ -151,7 +81,7 @@ public class Driver implements RecommenderAPI {
 		return user;
 	}
 
-	//adds new movie to moviemap and gives it an id of 1 greater than the size of the hashmap
+	//adds new movie to moviemap and gives it an id of 1 greater than the size of the hashmap and serializes to the file
 	public Movie addMovie(String title, String year, String url) 
 	{
 		long id = Importer.movieMap.size()+1;
@@ -164,8 +94,8 @@ public class Driver implements RecommenderAPI {
 		String delims2 = "|";
 		String newLine = System.getProperty("line.separator");
 
-		// Use new PrintWriter with the 'true' parameter to avoid overwriting the books file.
-		// Add the new book title, date released and author along with the book ID and delimiters.
+		// Use new PrintWriter with the 'true' parameter to avoid overwriting the movies file.
+		// Add the new movie info along with the id and delimiters
 		PrintWriter printWriter = null;
 		try {
 			if (!movieFile.exists()) movieFile.createNewFile();
@@ -186,7 +116,7 @@ public class Driver implements RecommenderAPI {
 
 	}
 
-	//adds a rating to the ratingmap
+	//adds a rating to the ratingmap and serializes to the file
 
 	public Rating addRating(long userID, long movieID, long movieRating) 
 
@@ -194,6 +124,7 @@ public class Driver implements RecommenderAPI {
 
 	{
 		// Initialize variable and store new Timestamp object
+		//use built in date.getTime to get the timestamp
 		java.util.Date date= new java.util.Date();
 		long timestampMS = date.getTime();
 		Rating rating = new Rating(userID, movieID, movieRating, timestampMS);
@@ -207,8 +138,8 @@ public class Driver implements RecommenderAPI {
 
 
 
-		// Use new PrintWriter with the 'true' parameter to avoid overwriting the books file.
-		// Add the new book title, date released and author along with the book ID and delimiters.
+		// Use new PrintWriter with the 'true' parameter to avoid overwriting the ratings file.
+		// Add the new rating info, id and delimiters
 		PrintWriter printWriter = null;
 		try {
 			if (!ratingFile.exists()) ratingFile.createNewFile();
@@ -298,6 +229,7 @@ public class Driver implements RecommenderAPI {
 		return null;
 	}
 
+	//lists out all movies in the hashmap
 	public void listMovies() throws FileNotFoundException
 	{
 		File movieFile = new File("data/movies.dat");
