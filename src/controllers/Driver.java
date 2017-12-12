@@ -31,7 +31,7 @@ public class Driver implements RecommenderAPI {
 		System.out.println(Importer.userMap);
 		return Importer.userMap;
 	}
-//check for git
+
 	//returns the contents of movie map
 	public HashMap<Long, Movie> getMovies()
 	{

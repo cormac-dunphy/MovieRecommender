@@ -10,7 +10,7 @@ import controllers.Driver;
 import models.Movie;
 import models.Rating;
 import models.User;
-
+//final
 public class Importer {
 
 	public static HashMap<Long, User> userMap = new HashMap<Long, User>();

@@ -22,7 +22,7 @@ import java.util.TreeMap;
 
 import models.Movie;
 import models.User;
-
+//final
 public class Sorter{
 
 	Importer importer = new Importer();
