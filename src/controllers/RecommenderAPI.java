@@ -15,8 +15,8 @@ public interface RecommenderAPI {
 	public Rating addRating(long userID,long movieID,long movieRating);
 	public Movie getMovie(long movieID);
 	public User getUserRatings(long userID);
-	public Movie getMoviesByTitle();
-	public Movie getMoviesByYear();
+	public Movie getMoviesByTitle(String title);
+	public Movie getMoviesByYear(String year);
 }
 
 

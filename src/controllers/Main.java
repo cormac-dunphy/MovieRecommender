@@ -27,11 +27,14 @@ public class Main {
 	//runs the program
 	public static void main(String args[]) throws Exception
 	{
+		//Imports all files and sorts them
 		Importer.ImportUsers();
 		sorter.sortUsers();
 		Importer.ImportMovies();
 		sorter.sortMovies();
-		Importer.ImportRatings();	
+		Importer.ImportRatings();
+
+		//runs cliche shell
 		menu.menu();
 	}
 }

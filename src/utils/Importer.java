@@ -12,7 +12,7 @@ import models.Rating;
 import models.User;
 
 public class Importer {
-	
+
 	public static HashMap<Long, User> userMap = new HashMap<Long, User>();
 	public static HashMap<Long, Movie> movieMap = new HashMap<Long, Movie>();
 	public static HashMap<Long, Rating> ratingMap = new HashMap<Long, Rating>();
@@ -39,16 +39,10 @@ public class Importer {
 			String occupation = userTokens[5];
 			long zipCode = Long.parseLong(userTokens[6]);
 
-		//	if (userTokens.length == 7) {
-				User u = new User(id, firstName, lastName, age, gender, occupation, zipCode);
-				userMap.put(new Long(id), u);
-		//	} else {
+			User u = new User(id, firstName, lastName, age, gender, occupation, zipCode);
+			userMap.put(new Long(id), u);
 		}
-				scanner.close();
-	//			throw new IOException("Invalid member length: " + userTokens.length);
-			//}
-		//}
-		//scanner.close();
+		scanner.close();
 	}
 
 	//reads in movies file and splits them into tokens
@@ -61,20 +55,15 @@ public class Importer {
 		while (scanner.hasNextLine())   {    
 			String movieDetails = scanner.nextLine().trim();    
 			String[] movieTokens = movieDetails.split(delims);
-
 			long movieID = Long.parseLong(movieTokens[0]);
 			String title = movieTokens[1];
 			String year = movieTokens[2];
 			String url = movieTokens[3];
 
-	//		if (movieTokens.length == 23) {
-				Movie m = new Movie(title, year, url);
-				movieMap.put(new Long(movieID), m);
-	//		} else {
+			Movie m = new Movie(title, year, url);
+			movieMap.put(new Long(movieID), m);
 		}
-				scanner.close();
-			//}
-	//	}
+		scanner.close();
 	}
 
 	//reads in ratings file and splits them into tokens
@@ -85,23 +74,16 @@ public class Importer {
 		String delims = "[|]";
 
 		while (scanner.hasNextLine())   {
-
 			String ratingDetails = scanner.nextLine();
 			String[] ratingTokens = ratingDetails.split(delims);
-
 			long userID = Long.parseLong(ratingTokens[0]);
 			long movieID = Long.parseLong(ratingTokens[1]);
 			long movieRating = Long.parseLong(ratingTokens[2]);
 			long userTimestamp = Long.parseLong(ratingTokens[3]);
 
-			// put data into ratingMap hashmap
-		//	if (ratingTokens.length == 4) {
-				Rating r = new Rating(userID, movieID, movieRating, userTimestamp);
-				ratingMap.put(new Long(userID), r);
-		//	} else {
+			Rating r = new Rating(userID, movieID, movieRating, userTimestamp);
+			ratingMap.put(new Long(userID), r);
 		}
-				scanner.close();
-		//	}
-		//}
+		scanner.close();
 	}
 }
